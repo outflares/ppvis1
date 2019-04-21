@@ -34,7 +34,106 @@ public class Group  {
     static int height;
     public static volatile boolean TaskNotDone = true;
     static Thread thread1;
+
 	
+    public static Thread createThread1(Display display) {
+		return new Thread(()-> {
+			while (!Thread.currentThread().isInterrupted()) {
+				while (TaskNotDone) {
+					try {
+						display.syncExec(() -> {
+							
+				    			TableItem item = table.getItem(y1);
+				    			String txt = item.getText(x1);
+				    			item.setText(x1, "");
+				    			if(y1==height-1) {y1=0;}
+				    			else {y1++;}
+				    			TableItem item2 = table.getItem(y1);
+				    			item2.setText(x1, txt);
+				    		
+				    			TableItem item4 = table.getItem(y2);
+				    			String txt2 = item4.getText(x2);
+				    			item4.setText(x2, "");
+				    			if(y2==height-1) {y2=0;}
+				    			else {y2++;}
+				    			TableItem item5 = table.getItem(y2);
+				    			item5.setText(x2, txt2);
+				    	
+							try {
+                                Thread.sleep(300);
+                            } catch (InterruptedException ex) {
+                                Logger.getLogger(Group.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+						});
+						if (!TaskNotDone) {
+                            break;
+                        }
+						////////////
+						display.syncExec(() -> {
+							TableItem item = table.getItem(y1);
+			    			String txt = item.getText(x1);
+			    			item.setText(x1, "");
+			    			if(y1==height-1) {y1=0;}
+			    			else {y1++;}
+			    			TableItem item2 = table.getItem(y1);
+			    			item2.setText(x1, txt);
+			    			
+			    			TableItem item4 = table.getItem(y2);
+			    			String txt2 = item4.getText(x2);
+			    			item4.setText(x2, "");
+			    			if(y2==height-1) {y2=0;}
+			    			else {y2++;}
+			    			TableItem item5 = table.getItem(y2);
+			    			item5.setText(x2, txt2);
+			    			
+			    			try {
+                                Thread.sleep(300);
+                            } catch (InterruptedException ex) {
+                                Logger.getLogger(Group.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+						});
+						if (!TaskNotDone) {
+                            break;
+                        }
+						////////////
+						display.syncExec(() -> {
+							TableItem item3 = table.getItem(y1);
+				    		String txt = item3.getText(x1);
+				    		item3.setText(x1,"");
+				    		if (x1==width-1) {x1=0;}
+				    		else {x1++;}
+				    		item3.setText(x1,txt);
+				    		
+				    		TableItem item6 = table.getItem(y2);
+				    		String txt2 = item6.getText(x2);
+				    		item6.setText(x2,"");
+				    		if (x2==width-1) {x2=0;}
+				    		else {x2++;}
+				    		item6.setText(x2,txt2);
+				    		
+				    		try {
+                                Thread.sleep(300);
+                            } catch (InterruptedException ex) {
+                                Logger.getLogger(Group.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+						});
+						if (!TaskNotDone) {
+                            break;
+                        }
+						
+						Thread.sleep(100);
+					}catch(InterruptedException e){
+						System.out.println("Exception handled"); 
+						e.printStackTrace();
+						Thread.currentThread().interrupt();
+					}
+				}
+			}
+		});
+		
+	}
+    
+    /*
 	public static Thread createThread1(Display display) {
 		return new Thread(()-> {
 			while (!Thread.currentThread().isInterrupted()) {
@@ -95,6 +194,7 @@ public class Group  {
 		});
 		
 	}
+	*/
 	
 public static void CreateGroup6() {
 		
@@ -171,7 +271,7 @@ public static void CreateGroup6() {
             public void widgetSelected(SelectionEvent arg0) {
 	    		
 	    		TaskNotDone = true;
-                Thread thread1 = createThread1(display);
+                thread1 = createThread1(display);
                 thread1.setDaemon(true);
                 thread1.start();  	
 	    	}
@@ -183,6 +283,13 @@ public static void CreateGroup6() {
 			@Override
             public void widgetSelected(SelectionEvent e) {
 			   	TaskNotDone = false;
+			   	try { 
+		            thread1.interrupt(); 
+		        } 
+		        catch (Exception e1) { 
+		            System.out.println("Exception handled"); 
+		        }
+			   	
             }
         });
 	} 
