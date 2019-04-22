@@ -131,69 +131,6 @@ public class Group  {
 		});
 		
 	}
-    
-    /*
-	public static Thread createThread1(Display display) {
-		return new Thread(()-> {
-			while (!Thread.currentThread().isInterrupted()) {
-				while (TaskNotDone == true) {
-					try {
-						display.syncExec(() -> {
-							for(int i=0;i<2;i++) {
-				    			TableItem item = table.getItem(y1);
-				    			String txt = item.getText(x1);
-				    			item.setText(x1, "");
-				    			if(y1==height-1) {y1=0;}
-				    			else {y1++;}
-				    			TableItem item2 = table.getItem(y1);
-				    			item2.setText(x1, txt);
-							}
-				    		
-							TableItem item3 = table.getItem(y1);
-				    		String txt = item3.getText(x1);
-				    		item3.setText(x1,"");
-				    		if (x1==width-1) {x1=0;}
-				    		else {x1++;}
-				    		item3.setText(x1,txt);
-				    		
-				    		
-							for(int i=0;i<2;i++) {
-				    			TableItem item4 = table.getItem(y2);
-				    			String txt2 = item4.getText(x2);
-				    			item4.setText(x2, "");
-				    			if(y2==height-1) {y2=0;}
-				    			else {y2++;}
-				    			TableItem item5 = table.getItem(y2);
-				    			item5.setText(x2, txt2);
-							}
-
-				    		TableItem item6 = table.getItem(y2);
-				    		String txt2 = item6.getText(x2);
-				    		item6.setText(x2,"");
-				    		if (x2==width-1) {x2=0;}
-				    		else {x2++;}
-				    		item6.setText(x2,txt2);
-				    	
-							try {
-                                Thread.sleep(700);
-                            } catch (InterruptedException ex) {
-                                Logger.getLogger(Group.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-						});
-						if (TaskNotDone != true) {
-                            break;
-                        }					
-					
-						Thread.sleep(50);
-					}catch(InterruptedException e){
-						e.printStackTrace();
-					}
-				}
-			}
-		});
-		
-	}
-	*/
 	
 public static void CreateGroup6() {
 		
