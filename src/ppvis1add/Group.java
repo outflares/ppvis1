@@ -119,8 +119,7 @@ public class Group  {
 						});
 						if (!TaskNotDone) {
                             break;
-                        }
-						
+                        }						
 						Thread.sleep(100);
 					}catch(InterruptedException e){
 						System.out.println("Exception handled"); 
